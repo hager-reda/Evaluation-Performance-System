@@ -1,0 +1,38 @@
+<div class="animated fadeIn">
+
+    <div class="row" >
+    <div class="col-lg">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i> Users
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Employee Name</th>
+                <th>Employee Position</th>
+                <th>Employee Groups</th>
+                <th *ngIf= "role !== 'superadmin' && role !== 'Admin'">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users">
+                <ng-template [ngIf]="user.name!=='Superadmin'">
+                <td>{{user?.name}}</td>
+                <td>{{user?.role}}</td>
+                <td>{{user?.groups}}</td>
+            <td *ngIf= "role !== 'superadmin' && role !== 'Admin'">  
+               <div class="btn-group btn-group-md ml-2">
+                  <button type="button" class="btn btn-block btn-warning" (click)="onClick(user.id)" >Evaluate</button>
+                </div>
+              </td>
+               </ng-template>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    </div>
+

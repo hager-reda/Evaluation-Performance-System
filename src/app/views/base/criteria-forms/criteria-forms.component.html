@@ -1,0 +1,65 @@
+<div class="col-md-11">
+    <div class="card">
+      <div class="card-header">
+        <strong>Criteria</strong> Form
+      </div>
+      <div class="card-body">
+        <form #newCriteriaForm = "ngForm"  (ngSubmit)="onSubmit(newCriteriaForm)" class="form-horizontal">
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="Criteria">Criteria Name</label>
+            <div class="col-md-9">
+
+              <input type="text" ngModel id="criteriaName" name="name" class="form-control" placeholder="Criteria Name"
+               #nameRef="ngModel" required minlength="3">
+               <div *ngIf="nameRef.touched && nameRef.invalid" class="alert alert-danger" >
+                <div *ngIf="nameRef.errors.required">
+                  Name is required.
+                </div>
+                <div *ngIf="nameRef.errors.minlength">
+                  Name must be at least 4 characters long.
+                </div>
+               </div>
+              
+            </div>
+          </div>
+          <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="criteriatype">Type</label>
+            <div class="col-md-9">  
+              <select id="criteriaType" ngModel name="type_id" class="form-control" 
+              #typeIdRef="ngModel" required>
+                <option *ngFor="let type of types" value={{type.id}}>{{type?.type}}</option>
+              </select>
+              <div *ngIf="typeIdRef.touched && typeIdRef.invalid" class="alert alert-danger" >
+                Type is required
+              </div>
+            </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-md-3 col-form-label" for="roles">Role</label>
+           <div class="col-md-9" >
+            <select id="roles" ngModel name="role" class="form-control" #roleRef="ngModel"  multiple size="3">
+              <option *ngFor="let role of positions" value={{role.id}}>{{role?.name}}</option>
+            </select>
+            <div *ngIf="roleRef.touched && roleRef.invalid" class="alert alert-danger" >
+              role/s  required
+            </div>
+          </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label" for="roles">Group</label>
+         <div class="col-md-9" >
+          <select id="roles" ngModel name="group_id" class="form-control" #grpRef="ngModel" required multiple size="2">
+            <option *ngFor="let grp of groups" value={{grp.id}}>{{grp?.name}}</option>
+          </select>
+          <div *ngIf="grpRef.touched && grpRef.invalid" class="alert alert-danger" >
+            group/s  required
+          </div>
+        </div>
+    </div>
+          <button type="submit" class="btn btn-md btn-primary" [disabled]="newCriteriaForm.invalid"><i class="fa fa-dot-circle-o"></i> Submit</button>
+        </form>
+
+      </div>
+    </div>

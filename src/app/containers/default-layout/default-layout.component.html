@@ -1,0 +1,41 @@
+<app-header
+  [navbarBrandRouterLink]="['/dashboard']"
+  [fixed]="true"
+  [navbarBrandFull]="{src: 'assets/img/brand/PE.svg', width: 80, height: 25, alt: 'PE Logo'}"
+  [sidebarToggler]="'lg'"
+  [asideMenuToggler]="'lg'">
+  <ul class="nav navbar-nav d-md-down-none">
+    <li class="nav-item px-3">
+      <a class="nav-link" [routerLink]="['/dashboard']">Dashboard</a>
+    </li>
+  </ul>
+  <ul class="nav navbar-nav ml-auto">
+    <li class="nav-item dropdown" dropdown placement="bottom right">
+      <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
+        <img src="assets/img/brand/images.jpeg" class="img-avatar" alt="admin@bootstrapmaster.com"/>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+        <a class="dropdown-item" (click)="logout()"><i class="fa fa-lock"></i> Logout</a>
+      </div>
+    </li>
+  </ul>
+</app-header>
+<div class="app-body">
+  <app-sidebar #appSidebar [fixed]="true" [display]="'lg'" [minimized]="sidebarMinimized" (minimizedChange)="toggleMinimize($event)">
+    <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="appSidebar.minimized"></app-sidebar-nav>
+    <app-sidebar-minimizer></app-sidebar-minimizer>
+  </app-sidebar>
+  <!-- Main content -->
+  <main class="main">
+    <cui-breadcrumb></cui-breadcrumb>
+    
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div><!-- /.container-fluid -->
+  </main>
+</div>
+<app-footer>
+  <span><a >PE</a> &copy; 2020 ITIanS.</span>
+</app-footer>
+<!-- style="background-image: url('assets/img/brand/eval.jpg');   z-index: -1 ; -->
+   <!-- background-size: 100% 100% ;  background-repeat: no-repeat;" -->
